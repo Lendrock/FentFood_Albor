@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UsuarioEntityRepository implements UsuarioRepository {
@@ -68,6 +69,13 @@ public class UsuarioEntityRepository implements UsuarioRepository {
         }else {
             this.crudUsuarioEntity.deleteById(id);
         }
+    }
+
+    //Login
+    @Override
+    public Optional<UsuarioDto> buscarPorCorreo(String correo) {
+        return this.crudUsuarioEntity.findByCorreo(correo)
+                .map(this.usuarioMapper::toDto);
     }
 
 }

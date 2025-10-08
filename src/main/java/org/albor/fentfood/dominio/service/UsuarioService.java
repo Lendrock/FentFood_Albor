@@ -7,6 +7,7 @@ import org.albor.fentfood.dominio.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -27,4 +28,7 @@ public class UsuarioService {
     }
 
     public void eliminarUsario(Long id){ this.usuarioRepository.eliminarUsuario(id);}
+
+    //Login
+    public Optional<UsuarioDto> buscarPorCorreo(String correo){ return this.usuarioRepository.buscarPorCorreo(correo);}
 }

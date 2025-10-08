@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.albor.fentfood.dominio.dto.ModUsuarioDto;
+import org.albor.fentfood.dominio.dto.RegistroUsuarioDto;
 import org.albor.fentfood.dominio.dto.UsuarioDto;
 import org.albor.fentfood.dominio.service.UsuarioService;
 import org.springframework.http.HttpStatus;
@@ -49,9 +50,9 @@ public class UsuarioController {
     //Crear
     @PostMapping
     public ResponseEntity<UsuarioDto> guardarUsuario
-    (@RequestBody @Valid UsuarioDto usuarioDto){
+    (@RequestBody @Valid RegistroUsuarioDto registroUsuarioDto){
         return ResponseEntity.status(HttpStatus.CREATED).
-                body(this.usuarioService.guardarUsuario(usuarioDto));
+                body(this.usuarioService.guardarUsuario(registroUsuarioDto));
     }
 
     //Modificar

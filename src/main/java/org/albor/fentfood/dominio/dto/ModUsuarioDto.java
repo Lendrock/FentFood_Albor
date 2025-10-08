@@ -1,6 +1,7 @@
 package org.albor.fentfood.dominio.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.albor.fentfood.persistence.entity.UsuarioEntity.Rol;
 
@@ -10,7 +11,7 @@ public record ModUsuarioDto(
         String name,
         @NotBlank(message = "El correo es obligatorio.")
         String email,
-        @NotBlank(message = "El tipo es obligatorio.")
+        @NotNull(message = "El tipo es obligatorio.")
         Rol rol
 ) {
 }

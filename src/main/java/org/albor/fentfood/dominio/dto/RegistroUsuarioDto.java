@@ -1,6 +1,7 @@
 package org.albor.fentfood.dominio.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.albor.fentfood.persistence.entity.UsuarioEntity.Rol;
 
@@ -13,7 +14,7 @@ public record RegistroUsuarioDto(
         @NotBlank(message = "La contraseña es obligatoria.")
         @Size(min = 4, message = "La contraseña debe tener como minimo 6 caracteres.")
         String password,
-        @NotBlank(message = "El tipo es obligatorio.")
+        @NotNull(message = "El tipo es obligatorio.")
         Rol rol
 ) {
 }

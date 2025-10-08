@@ -36,7 +36,7 @@ public class GestorEntityRepository implements GestorRepository {
 
     @Override
     public GestorDto guardarGestor(GestorDto gestorDto) {
-        if (this.crudGestorEntity.existsById(gestorDto.usuario())) {
+        if (this.crudGestorEntity.existsByUsuario_IdUsuario(gestorDto.usuario().idUsuario())) {
             throw new GestorYaExisteException(gestorDto.firstName() + " " + gestorDto.lastName());
         }
         GestorEntity gestor = this.gestorMapper.toEntity(gestorDto);

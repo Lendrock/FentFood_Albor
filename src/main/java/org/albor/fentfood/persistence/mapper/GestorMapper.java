@@ -23,7 +23,6 @@ public interface GestorMapper {
     @InheritInverseConfiguration
     GestorEntity toEntity(GestorDto dto);
 
-    @Mapping(source = "usuario", target = "usuario")
     @Mapping(source = "firstName", target = "nombreGestor")
     @Mapping(source = "lastName", target = "apellidoGestor")
     @Mapping(source = "phone", target = "telefono")

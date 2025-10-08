@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface UsuarioRepository {
     List<UsuarioDto> obtenerTodo();
-    UsuarioDto buscarPorId(Long id);
+    UsuarioDto buscarPorId(Long idUsuario);
     UsuarioDto guardarUsuario(RegistroUsuarioDto registroUsuarioDto);
-    UsuarioDto modificarUsuario(Long id, ModUsuarioDto modUsuarioDto);
-    void eliminarUsuario(Long id);
+    UsuarioDto modificarUsuario(Long idUsuario, ModUsuarioDto modUsuarioDto);
+    void eliminarUsuario(Long idUsuario);
 }

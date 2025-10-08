@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring", uses = {ProductUnitMapper.class, ProductStateMapper.class})
 public interface ProductoMapper {
 
@@ -29,4 +31,6 @@ public interface ProductoMapper {
     @Mapping(source = "expirationDate", target = "fechaVencimiento")
     @Mapping(source = "productState", target = "estadoProducto", qualifiedByName = "generarEstadoProducto")
     void modificarEntityFromDto(ModProductoDto mod, @MappingTarget ProductoEntity entity);
+
+    List<ProductoDto> toDto(Iterable<ProductoEntity> all);
 }

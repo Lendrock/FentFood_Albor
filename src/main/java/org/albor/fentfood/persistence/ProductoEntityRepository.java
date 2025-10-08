@@ -30,7 +30,9 @@ public class ProductoEntityRepository implements ProductoRepository {
 
     @Override
     public ProductoDto buscarPorIdProducto(Long idProducto) {
-        return this.productoMapper.toDto(this.crudProductoEntity.findById(idProducto).orElse(null));
+        return this.crudProductoEntity.findById(idProducto)
+                .map(productoMapper::toDto)
+                .orElseThrow(() -> new ProductoNoExisteException(idProducto));
     }
 
     @Override
@@ -46,13 +48,15 @@ public class ProductoEntityRepository implements ProductoRepository {
 
     @Override
     public ProductoDto modificarProducto(Long idProducto, ModProductoDto modProductoDto) {
-        ProductoEntity producto = this.crudProductoEntity.findById(idProducto).orElse(null);
-        if (producto == null) {
-            throw new ProductoNoExisteException(idProducto);
-        } else {
-            this.productoMapper.modificarEntityFromDto(modProductoDto, producto);
-            return productoMapper.toDto(this.crudProductoEntity.save(producto));
-        }
+        ProductoEntity entity = crudProductoEntity.findById(idProducto)
+                .orElseThrow(() -> new ProductoNoExisteException(idProducto));
+        entity.setNombreProducto(modProductoDto.productName());
+        entity.setDescripcion(modProductoDto.description());
+        entity.setUnidadMedida(String.valueOf(modProductoDto.productUnit()));
+        entity.setFechaVencimiento(modProductoDto.expirationDate());
+        entity.setEstadoProducto(String.valueOf(modProductoDto.productState()));
+        ProductoEntity updated = crudProductoEntity.save(entity);
+        return productoMapper.toDto(updated);
     }
 
     @Override

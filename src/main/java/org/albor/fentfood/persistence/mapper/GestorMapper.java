@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring", uses = {UsuarioMapper.class})
 public interface GestorMapper {
 
@@ -27,4 +29,6 @@ public interface GestorMapper {
     @Mapping(source = "phone", target = "telefono")
     @Mapping(source = "address", target = "direccion")
     void modificarEntityFromDto(ModGestorDto mod, @MappingTarget GestorEntity entity);
+
+    List<GestorDto> toDto(Iterable<GestorEntity> all);
 }

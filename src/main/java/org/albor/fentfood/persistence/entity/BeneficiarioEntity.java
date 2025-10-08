@@ -9,7 +9,7 @@ import lombok.Data;
 public class BeneficiarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idBeneficiario;
+    private Long idBeneficiario;
 
     @Column(length = 64)
     private String nombreBeneficiario;
